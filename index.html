@@ -4,501 +4,707 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Multi Fitness | Elevate Your Game</title>
 
-    <title>MyGym</title>
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheee" href="css/aos.css">
-    <!--main page css-->
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      /* ---------- GLOBAL RESET & VARIABLES ---------- */
+      :root {
+        --primary: #ff3a2f;
+        --primary-dark: #e32e24;
+        --secondary: #0a0c10;
+        --dark-bg: #0b0e14;
+        --card-bg: #11161f;
+        --text-light: #f0f3f8;
+        --text-gray: #b0b8c5;
+        --gradient-hero: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%);
+        --shadow-sm: 0 20px 35px -10px rgba(0,0,0,0.3);
+        --shadow-card: 0 25px 40px -12px rgba(0,0,0,0.4);
+        --border-radius: 18px;
+        --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      h1, h2, h3, h4, h5, .navbar-brand, .btn {
+        font-family: 'Oswald', 'Inter', sans-serif;
+        letter-spacing: 0.03em;
+      }
+
+      p {
+        line-height: 1.6;
+        color: var(--text-gray);
+      }
+
+      a {
+        transition: var(--transition);
+      }
+
+      section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: linear-gradient(120deg, #fff, var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 15px;
+      }
+
+      .section-sub {
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      /* ----- BUTTONS ----- */
+      .btn-custom {
+        display: inline-block;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 600;
+        padding: 12px 32px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        border: none;
+        transition: var(--transition);
+        box-shadow: 0 8px 20px rgba(255,58,47,0.3);
+      }
+
+      .btn-custom:hover {
+        background: #fff;
+        color: var(--primary);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(255,58,47,0.4);
+      }
+
+      .btn-outline-light {
+        border: 2px solid rgba(255,255,255,0.5);
+        background: transparent;
+        color: white;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .btn-outline-light:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* ---------- NAVBAR (Glassmorphism) ---------- */
+      .navbar {
+        background: rgba(10, 12, 16, 0.95);
+        backdrop-filter: blur(12px);
+        padding: 0.8rem 2rem;
+        transition: all 0.3s;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+      }
+
+      .navbar-brand {
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: 1px;
+      }
+
+      .navbar-brand span {
+        color: var(--primary);
+      }
+
+      .nav-link {
+        color: #ddd !important;
+        font-weight: 500;
+        margin: 0 8px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        position: relative;
+      }
+
+      .nav-link:hover, .nav-link.active {
+        color: var(--primary) !important;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: 0.3s;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .social-icon-nav a {
+        color: #ccc;
+        font-size: 1.1rem;
+        margin-left: 15px;
+        transition: 0.3s;
+      }
+
+      .social-icon-nav a:hover {
+        color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero h6 {
+        font-size: 1.2rem;
+        letter-spacing: 4px;
+        color: var(--primary);
+        background: rgba(0,0,0,0.6);
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 50px;
+        backdrop-filter: blur(4px);
+      }
+
+      .hero h1 {
+        font-size: 4.2rem;
+        font-weight: 800;
+        text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+        margin: 20px 0;
+      }
+
+      .hero-buttons .btn {
+        margin: 10px 12px;
+      }
+
+      /* Feature / Membership Banner */
+      .feature {
+        background: var(--secondary);
+        background-image: radial-gradient(circle at 10% 20%, rgba(255,58,47,0.1) 0%, rgba(0,0,0,0.9) 90%);
+      }
+
+      .info-card {
+        background: rgba(17, 22, 31, 0.8);
+        backdrop-filter: blur(12px);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        transition: var(--transition);
+      }
+
+      .info-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+      }
+
+      /* Class Cards */
+      .class-card {
+        background: var(--card-bg);
+        border-radius: 25px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: var(--shadow-card);
+        height: 100%;
+      }
+
+      .class-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+
+      .class-card:hover img {
+        transform: scale(1.03);
+      }
+
+      .class-info-card {
+        padding: 1.5rem;
+        position: relative;
+      }
+
+      .price-tag {
+        position: absolute;
+        top: -20px;
+        right: 25px;
+        background: var(--primary);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.5rem;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+      }
+
+      /* Schedule table modern */
+      .schedule-table-wrapper {
+        overflow-x: auto;
+        border-radius: 28px;
+        background: #0f131c;
+        padding: 1rem;
+      }
+
+      .schedule-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        text-align: center;
+      }
+
+      .schedule-table th {
+        background: var(--primary);
+        color: white;
+        padding: 16px 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .schedule-table td {
+        background: #141b26;
+        padding: 18px 10px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: 0.2s;
+      }
+
+      .schedule-table td:hover {
+        background: #1e2838;
+      }
+
+      .schedule-table strong {
+        color: var(--primary);
+        font-size: 1rem;
+      }
+
+      /* Team Section - Modern */
+      .team-card {
+        background: #11161f;
+        border-radius: 30px;
+        overflow: hidden;
+        text-align: center;
+        transition: all 0.4s;
+      }
+      .team-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        margin: 30px auto 10px;
+        filter: drop-shadow(0 10px 8px rgba(0,0,0,0.2));
+      }
+      .team-card h3 {
+        margin-top: 10px;
+      }
+      .social-team a {
+        color: #aaa;
+        margin: 0 8px;
+        font-size: 1.2rem;
+      }
+      .social-team a:hover {
+        color: var(--primary);
+      }
+
+      /* Contact Form */
+      .contact-form-glass {
+        background: rgba(17, 22, 31, 0.7);
+        backdrop-filter: blur(6px);
+        padding: 2rem;
+        border-radius: 32px;
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+      .form-control-custom {
+        background: #1a1f2b;
+        border: 1px solid #2a2f3f;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 50px;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .form-control-custom:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: #232a38;
+      }
+      textarea.form-control-custom {
+        border-radius: 25px;
+      }
+
+      /* Footer */
+      footer {
+        background: #06080c;
+        padding: 3rem 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 { font-size: 2.8rem; }
+        .section-title { font-size: 2.2rem; }
+        .navbar-brand { font-size: 1.6rem; }
+        section { padding: 60px 0; }
+        .schedule-table td, .schedule-table th { padding: 12px 5px; font-size: 0.8rem; }
+      }
+      @media (max-width: 576px) {
+        .hero h1 { font-size: 2.2rem; }
+      }
+
+      /* modal style */
+      .modal-content-modern {
+        background: #12161f;
+        border-radius: 28px;
+        border: none;
+      }
+      .modal-content-modern input, .modal-content-modern textarea {
+        background: #1e2432;
+        border: none;
+        color: white;
+      }
+    </style>
 </head>
 
-<body dat-spy="scroll" data-target="#navbarNav" data-offset="50">
+<body>
 
-    <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-
-            <a class="navbar-brand" href="index.html">MULTI Fitness</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-lg-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">About Us</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">Classes</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Schedules</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
-                    </li>
-                </ul>
-
-                <ul class="social-icon ml-lg-3">
-                    <li><a href="#" class="fa fa-facebook"></a></li>
-                    <li><a href="https://x.com/xiao_gaming_?t=QaHBm2qHfIitTNn2sfV6xQ&s=09" class="fa fa-twitter"></a>
-                    </li>
-                    <li><a href="https://www.instagram.com/shashank_chourasia07?igsh=MTBzdWxveWs1Nmo1dA=="
-                            class="fa fa-instagram"></a></li>
-                </ul>
-            </div>
-
+  <!-- GLASS NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">MULTI<span>Fitness</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars text-white"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="#home" class="nav-link smoothScroll">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link smoothScroll">About</a></li>
+          <li class="nav-item"><a href="#class" class="nav-link smoothScroll">Classes</a></li>
+          <li class="nav-item"><a href="#schedule" class="nav-link smoothScroll">Schedule</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link smoothScroll">Contact</a></li>
+        </ul>
+        <div class="social-icon-nav ml-lg-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-    </nav>
-
-
-    <!-- HERO -->
-    <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
-
-        <div class="bg-overlay"></div>
-
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-8 col-md-10 mx-auto col-12">
-                    <div class="hero-text mt-5 text-center">
-
-                        <h6 data-aos="fade-up" data-aos-delay="300">Build a Healthy Lifestyle!</h6>
-
-                        <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Upgrade your body at MULTI
-                            Fitness</h1>
-
-                        <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get
-                            started</a>
-
-                        <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up"
-                            data-aos-delay="700">learn more</a>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="feature" id="feature">
-        <div class="container">
-            <div class="row">
-
-                <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-3 text-white" data-aos="fade-up">New to the MULTI Fitness</h2>
-
-                    <h6 class="mb-4 text-white" data-aos="fade-up">Your membership for 2 months (500 per month)</h6>
-
-                    <p data-aos="fade-up" data-aos-delay="200">MyGym will help you to maintain your health and fitness
-                        you will find only at <a rel="nofollow" href="#home" target="_parent">MULTI Fitness</a> </p>
-
-                    <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300"
-                        data-toggle="modal" data-target="#membershipForm">Become a member today</a>
-                </div>
-
-                <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
-                    <div class="about-working-hours">
-                        <div>
-
-                            <h2 class="mb-4 text-white" data-aos="fade-up" data-aos-delay="500">Working hours</h2>
-
-                            <strong class="d-block" data-aos="fade-up" data-aos-delay="600">Sunday : Closed</strong>
-
-                            <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Monday -
-                                Friday</strong>
-
-                            <p data-aos="fade-up" data-aos-delay="800">7:00 AM - 10:00 PM</p>
-
-                            <strong class="mt-3 d-block" data-aos="fade-up" data-aos-delay="700">Saturday</strong>
-
-                            <p data-aos="fade-up" data-aos-delay="800">6:00 AM - 4:00 PM</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        </div>
-    </section>
-
-
-    <!-- ABOUT -->
-    <section class="about section" id="about">
-        <div class="container">
-            <div class="row">
-
-                <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
-                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">Hello, we are MULTI Fitness</h2>
-
-                    <p data-aos="fade-up" data-aos-delay="400">WE can assure you that ,if you join us you will surely
-                        maintain your Health and Fitness.</p>
-
-                    <p data-aos="fade-up" data-aos-delay="500">If you have any question regarding <a rel="nofollow"
-                            href="https://www.tooplate.com/view/2119-gymso-fitness" target="_parent">MyGym
-                            Membership</a>, you can <a rel="nofollow" href="mailto:jayparmar7654321@gmail.com"
-                            target="_parent">contact us</a> immediately. Thank you.</p>
-
-                </div>
-
-                <div class="ml-lg-auto col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="700">
-                    <div class="team-thumb">
-                        <img src="images/team/undraw_yoga_248n.svg" class="img-fluid" alt="Trainer">
-
-                        <div class="team-info d-flex flex-column">
-
-                            <h3>Sahil</h3>
-                            <span>Yoga Instructor</span>
-
-                            <ul class="social-icon mt-3">
-                                <li><a href="https://x.com/xiao_gaming_?t=QaHBm2qHfIitTNn2sfV6xQ&s=09"
-                                        class="fa fa-twitter"></a></li>
-                                <li><a href="https://www.instagram.com/shashank_chourasia07?igsh=MTBzdWxveWs1Nmo1dA=="
-                                        class="fa fa-instagram"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mr-lg-auto mt-5 mt-lg-0 mt-md-0 col-lg-3 col-md-6 col-12" data-aos="fade-up"
-                    data-aos-delay="800">
-                    <div class="team-thumb">
-                        <img src="images/team/undraw_energizer_2224.svg" class="img-fluid" alt="Trainer">
-
-                        <div class="team-info d-flex flex-column">
-
-                            <h3>Ramesh</h3>
-                            <span>Body trainer</span>
-
-                            <ul class="social-icon mt-3">
-                                <li><a href="https://www.instagram.com/shashank_chourasia07?igsh=MTBzdWxveWs1Nmo1dA=="
-                                        class="fa fa-instagram"></a></li>
-                                <li><a href="https://x.com/xiao_gaming_?t=QaHBm2qHfIitTNn2sfV6xQ&s=09"
-                                        class="fa fa-facebook"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- CLASS -->
-    <section class="class section" id="class">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 text-center mb-5">
-                    <h6 data-aos="fade-up">Get A Perfect Body</h6>
-
-                    <h2 data-aos="fade-up" data-aos-delay="200">Our Training Classes</h2>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="class-thumb">
-                        <img src="images/class/yoga-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Yoga</h3>
-
-                            <span><strong>Trained by</strong> - Yoga Expert</span>
-
-                            <span class="class-price">$45</span>
-
-                            <p class="mt-3">Yoga is a light, which once lit will never dim</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
-                    <div class="class-thumb">
-                        <img src="images/class/crossfit-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Aerobics</h3>
-
-                            <span><strong>Trained by</strong> - Aerobics Trainer</span>
-
-                            <span class="class-price">$60</span>
-
-                            <p class="mt-3">True power of energy comes from Aerobics</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-                    <div class="class-thumb">
-                        <img src="images/class/cardio-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Cardio</h3>
-
-                            <span><strong>Trained by</strong> - Cardio Experts</span>
-
-                            <span class="class-price">$70</span>
-
-                            <p class="mt-3">Good things come to those who sweat....</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- SCHEDULE -->
-    <section class="schedule section" id="schedule">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 text-center">
-                    <h6 data-aos="fade-up">our weekly GYM schedules</h6>
-
-                    <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Workout Timetable</h2>
-                </div>
-
-                <div class="col-lg-12 py-5 col-md-12 col-12">
-                    <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up"
-                        data-aos-delay="300">
-
-                        <thead class="thead-light">
-                            <th><i class="fa fa-calendar"></i></th>
-                            <th>Mon</th>
-                            <th>Tue</th>
-                            <th>Wed</th>
-                            <th>Thu</th>
-                            <th>Fri</th>
-                            <th>Sat</th>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td><small>7:00 am</small></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                                <td>
-                                    <strong>Power Fitness</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <strong>Yoga Section</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>9:00 am</small></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                                <td>
-                                    <strong>Areobic</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>11:00 am</small></td>
-                                <td></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>11:00 am - 2:00 pm</span>
-                                </td>
-                                <td>
-                                    <strong>Areobic</strong>
-                                    <span>11:30 am - 3:30 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Body work</strong>
-                                    <span>11:50 am - 5:20 pm</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>2:00 pm</small></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>2:00 pm - 4:00 pm</span>
-                                </td>
-                                <td>
-                                    <strong>Power lifting</strong>
-                                    <span>3:00 pm - 6:00 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>6:00 pm - 9:00 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Crossfit</strong>
-                                    <span>5:00 pm - 7:00 pm</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- CONTACT -->
-    <section class="contact section" id="contact">
-        <div class="container">
-            <div class="row">
-
-                <div class="ml-auto col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel free to ask anything</h2>
-
-                    <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400"
-                        role="form">
-                        <input type="text" class="form-control" name="cf-name" placeholder="Name">
-
-                        <input type="email" class="form-control" name="cf-email" placeholder="Email">
-
-                        <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
-
-                        <button type="submit" class="form-control" id="submit-button" name="submit">Send
-                            Message</button>
-                    </form>
-                </div>
-
-                <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Where you can <span>find us</span></h2>
-
-                    <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> Katras Bazar
-                        ,Dhanbad , Jharkhand</p>
-                    <!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-                    <div class="google-map" data-aos="fade-up" data-aos-delay="900">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29202.023294001556!2d86.27428181392821!3d23.80960398229125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6a0d331886089%3A0xd2422d61f9ec6e9d!2sKATRAS%20COLLEGE%2C%20KATRASGARH!5e0!3m2!1sen!2sin!4v1735047741691!5m2!1sen!2sin"
-                            width="1920" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="ml-auto col-lg-4 col-md-5">
-                    <p class="copyright-text">Copyright &copy; <h3>Shashank Chourasia </h3>
-
-                        <br>Design with ❤️: <a href="">Shashank Chourasia - GitHub</a>
-                    </p>
-                </div>
-
-                <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-                    <p class="mr-4">
-                        <i class="fa fa-envelope-o mr-1"></i>
-                        <a href="mailto:shashankchourasia0829@gmail.com">Contact Us</a>
-                    </p>
-
-                    <!-- <p><i class="fa fa-phone mr-1"></i> 010-020-0840</p> -->
-                </div>
-
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal -->
-    <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <h2 class="modal-title" id="membershipFormLabel">Membership Form</h2>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form class="membership-form webform" role="form">
-                        <input type="text" class="form-control" name="cf-name" placeholder="John cena">
-
-                        <input type="email" class="form-control" name="cf-email" placeholder="Johncena@gmail.com">
-
-                        <input type="tel" class="form-control" name="cf-phone" placeholder="123-456-7890"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-
-                        <textarea class="form-control" rows="3" name="cf-message"
-                            placeholder="Additional Message"></textarea>
-
-                        <button type="submit" class="form-control" id="submit-button" name="submit">Submit
-                            Button</button>
-
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="signup-agree">
-                            <label class="custom-control-label text-small text-muted" for="signup-agree">I agree to the
-                                <a href="#">Terms &amp;Conditions</a>
-                            </label>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer"></div>
-
-            </div>
-        </div>
+      </div>
     </div>
+  </nav>
 
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="hero-text">
+            <h6 data-aos="fade-up" data-aos-delay="100">🔥 BUILD A HEALTHY LIFESTYLE 🔥</h6>
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-white">Upgrade Your Body at <br> MULTI Fitness</h1>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+              <a href="#feature" class="btn btn-custom">GET STARTED</a>
+              <a href="#about" class="btn btn-outline-light">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- FEATURE / MEMBERSHIP SECTION -->
+  <section class="feature" id="feature">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 mb-4" data-aos="fade-right">
+          <div class="info-card">
+            <h2 class="text-white">New to MULTI Fitness?</h2>
+            <h5 class="text-primary mb-3">Your membership for 2 months (₹500 / month)</h5>
+            <p class="text-light">Join the most electrifying fitness community. Get personalized training, modern equipment, and expert guidance.</p>
+            <a href="#" class="btn btn-custom mt-2" data-toggle="modal" data-target="#membershipForm">Become a member today →</a>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1 col-md-12" data-aos="fade-left">
+          <div class="info-card text-center">
+            <i class="fas fa-clock fa-2x text-primary mb-3"></i>
+            <h3 class="mb-3">Working Hours</h3>
+            <p><strong>Sunday:</strong> Closed</p>
+            <p><strong>Mon - Fri:</strong> 7:00 AM - 10:00 PM</p>
+            <p><strong>Saturday:</strong> 6:00 AM - 4:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ABOUT + TEAM -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="section-sub">About Studio</div>
+          <h2 class="section-title">Hello, we are MULTI Fitness</h2>
+          <p>We believe in transformation — not just physically, but mentally. Our trainers are dedicated to push your limits safely. Whether you're beginner or pro, we've got you covered.</p>
+          <p>If you have any question regarding membership, you can <a href="mailto:shashankchourasia0829@gmail.com" class="text-primary">contact us</a> immediately. 💪</p>
+        </div>
+        <div class="col-lg-5 offset-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="team-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Trainer" class="img-fluid">
+                <div class="p-3">
+                  <h4>Sahil</h4>
+                  <span class="text-primary">Yoga Instructor</span>
+                  <div class="social-team mt-2">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="team-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2972/2972685.png" alt="Trainer" class="img-fluid">
+                <div class="p-3">
+                  <h4>Ramesh</h4>
+                  <span class="text-primary">Body Trainer</span>
+                  <div class="social-team mt-2">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- CLASSES SECTION -->
+  <section id="class" style="background: #0d1117;">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <div class="section-sub">Get A Perfect Body</div>
+        <h2 class="section-title">Our Training Classes</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="class-card">
+            <img src="https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Yoga">
+            <div class="class-info-card">
+              <div class="price-tag">$45</div>
+              <h3>Yoga</h3>
+              <span><strong>Trained by:</strong> Yoga Expert</span>
+              <p class="mt-2">"Yoga is a light, once lit will never dim" — find harmony.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="class-card">
+            <img src="https://images.pexels.com/photos/2294351/pexels-photo-2294351.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Aerobics">
+            <div class="class-info-card">
+              <div class="price-tag">$60</div>
+              <h3>Aerobics</h3>
+              <span><strong>Trained by:</strong> Aerobics Trainer</span>
+              <p class="mt-2">True power of energy comes from Aerobics — feel the rhythm.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="class-card">
+            <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cardio">
+            <div class="class-info-card">
+              <div class="price-tag">$70</div>
+              <h3>Cardio</h3>
+              <span><strong>Trained by:</strong> Cardio Experts</span>
+              <p class="mt-2">Good things come to those who sweat — push your limits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- SCHEDULE TABLE MODERN -->
+  <section id="schedule" style="background: #0a0e14;">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <div class="section-sub">our weekly GYM schedules</div>
+        <h2 class="section-title text-white">Workout Timetable</h2>
+      </div>
+      <div class="schedule-table-wrapper" data-aos="fade-up">
+        <table class="schedule-table">
+          <thead>
+            <tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>7:00 am</td><td><strong>Cardio</strong><br><span>7-9am</span></td><td><strong>Power Fit</strong><br><span>7-9am</span></td><td>—</td><td>—</td><td><strong>Yoga</strong><br><span>7-9am</span></td><td><strong>Crossfit</strong><br><span>7-9am</span></td></tr>
+            <tr><td>9:00 am</td><td>—</td><td>—</td><td><strong>Boxing</strong><br><span>8-9am</span></td><td><strong>Aerobic</strong><br><span>8-9am</span></td><td>—</td><td><strong>Cardio</strong><br><span>8-9am</span></td></tr>
+            <tr><td>11:00 am</td><td>—</td><td><strong>Boxing</strong><br><span>11-2pm</span></td><td><strong>Aerobic</strong><br><span>11:30-3:30</span></td><td>—</td><td><strong>Bodywork</strong><br><span>11:50-5:20</span></td><td>—</td></tr>
+            <tr><td>2:00 pm</td><td><strong>Boxing</strong><br><span>2-4pm</span></td><td><strong>Powerlift</strong><br><span>3-6pm</span></td><td>—</td><td><strong>Cardio</strong><br><span>6-9pm</span></td><td>—</td><td><strong>Crossfit</strong><br><span>5-7pm</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
-    <!--scripts part-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/custom.js"></script>
+  <!-- CONTACT + MAP -->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+          <div class="contact-form-glass">
+            <h3 class="mb-4">Feel free to ask <span class="text-primary">anything</span></h3>
+            <form id="contactForm" method="post">
+              <input type="text" class="form-control-custom" name="cf-name" placeholder="Your Name *" required>
+              <input type="email" class="form-control-custom" name="cf-email" placeholder="Email Address *" required>
+              <textarea class="form-control-custom" rows="4" name="cf-message" placeholder="Your Message..."></textarea>
+              <button type="submit" class="btn btn-custom w-100">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+              <div id="formAlert" class="mt-3 small text-success text-center"></div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1" data-aos="fade-left">
+          <h3>Where you can <span class="text-primary">find us</span></h3>
+          <p class="mt-2"><i class="fas fa-map-marker-alt text-primary me-2"></i> Katras Bazar, Dhanbad, Jharkhand</p>
+          <div class="google-map mt-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29202.023294001556!2d86.27428181392821!3d23.80960398229125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6a0d331886089%3A0xd2422d61f9ec6e9d!2sKATRAS%20COLLEGE%2C%20KATRASGARH!5e0!3m2!1sen!2sin!4v1735047741691!5m2!1sen!2sin" width="100%" height="240" style="border:0; border-radius: 28px;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center text-center text-md-left">
+        <div class="col-md-6">
+          <p class="mb-0">Copyright &copy; 2025 <strong class="text-primary">Shashank Chourasia</strong> <br> Design with <i class="fas fa-heart text-danger"></i> by MULTI Fitness</p>
+        </div>
+        <div class="col-md-6 text-md-right mt-3 mt-md-0">
+          <a href="mailto:shashankchourasia0829@gmail.com" class="text-light mr-3"><i class="fas fa-envelope"></i> Contact Us</a>
+          <a href="#" class="text-light"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL MEMBERSHIP FORM -->
+  <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modal-content-modern">
+        <div class="modal-header border-0">
+          <h3 class="modal-title text-white">Join Membership</h3>
+          <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="memberForm">
+            <input type="text" class="form-control-custom mb-3" placeholder="Full Name" required>
+            <input type="email" class="form-control-custom mb-3" placeholder="Email" required>
+            <input type="tel" class="form-control-custom mb-3" placeholder="Phone Number" required>
+            <textarea class="form-control-custom mb-3" rows="2" placeholder="Additional Message (optional)"></textarea>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="terms">
+              <label class="custom-control-label text-muted" for="terms">I agree to the <a href="#" class="text-primary">Terms & Conditions</a></label>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+    
+    // Smooth scrolling with offset
+    $('.smoothScroll, .navbar a[href^="#"], .hero-buttons a').on('click', function(e) {
+      if (this.hash !== "") {
+        e.preventDefault();
+        let hash = this.hash;
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top - 70
+        }, 800);
+      }
+    });
+    
+    // Close navbar on mobile click
+    $('.navbar-nav .nav-link').on('click', function() {
+      $('.navbar-collapse').collapse('hide');
+    });
+    
+    // form alert dummy
+    $('#contactForm').on('submit', function(e) {
+      e.preventDefault();
+      $('#formAlert').html('<span>✅ Message sent! We’ll get back soon 💪</span>').fadeIn();
+      $(this)[0].reset();
+      setTimeout(() => $('#formAlert').fadeOut(), 3000);
+    });
+    $('#memberForm').on('submit', function(e) {
+      e.preventDefault();
+      alert('🎉 Thank you! Our team will contact you shortly.');
+      $('#membershipForm').modal('hide');
+      $(this)[0].reset();
+    });
+    
+    // active link highlight
+    $(window).scroll(function() {
+      let scrollPos = $(this).scrollTop() + 100;
+      $('.nav-link').each(function() {
+        let currLink = $(this);
+        let refElement = $(currLink.attr("href"));
+        if (refElement.length && refElement.offset().top <= scrollPos && refElement.offset().top + refElement.height() > scrollPos) {
+          $('.nav-link').removeClass("active");
+          currLink.addClass("active");
+        } else {
+          currLink.removeClass("active");
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
